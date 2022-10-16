@@ -1,0 +1,32 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Instructions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base_1/assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base_1/assets/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base_1/assets/css/trelyco-login-vertical-horizontal-1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base_1/assets/css/trelyco-login-vertical-horizontal.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+        <h2 style="color:orange">FRAUD APP FINDER</h2>
+    </nav>
+
+<center style="padding-top: 100px">
+    <p>
+    This app analyze all the comments for an particular app and shows a pie chart accroding to that comments.
+    You can predecit is the app is <b>SCAM</b> or <b>FRAUD</b> form number of negative comments in the app. 
+    There are four level of app analyzsis functions are there.
+    LazyAnalysis- Takes alot of time to analysis all comments in the app.
+    QuickAnalysis- Takes first 100 comments in the app from that it analysis if the app is FRAUD or not
+    StarBasedAnalysis- You can also filter the comments by rating, it shows the pie chart for that rating comments only.  
+    You have to copy paste app's id.
+    This app only works on andriod app only.
+    
+    </p>
+    <h3><a href="{{ url_for('NormalAnalysisInputTaker') }}">Click here  </a>for analyze app</h3>
+</center>
+</body>
+</html>

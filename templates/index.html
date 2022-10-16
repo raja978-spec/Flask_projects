@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Fraud App Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base_1/assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base_1/assets/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base_1/assets/css/trelyco-login-vertical-horizontal-1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base_1/assets/css/trelyco-login-vertical-horizontal.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+        <h2 style="color:orange">FRAUD APP FINDER</h2>
+    </nav>
+    {% if star %}
+    <div class="login-card" style="padding-top: 20dp;">
+        {% if msg %}
+        <h6 style="color:red;">{{msg}}</h6><br>
+        {% endif %}
+        <form class="form-signin" method="POST">
+            <input class="form-control" type="text" name="appid" placeholder="Copy paste appid" autofocus="">
+            <br>
+            <input type="number" placeholder="Type no of star EX:3" class="form-control" name="star">
+            <br>
+            <label >Select any of this options: </label>
+            <select name="chooice" size="2" class="form-control" >
+                <option value="3">StarBasedQuickAnalysis</option>
+                <option value="4">StarBasedLazyAnalysis</option>
+            </select>
+            <br>
+            <button id="scrollTopButton" onclick="gfg_Run()" class="btn btn-primary btn-block btn-lg btn-signin" type="submit">Find</button></form>
+        </form>
+    </div>
+    <center>
+        <a href="{{ url_for('NormalAnalysisInputTaker') }}">
+            <h3 style="color: green;">Go to Normal Analysis</h3>
+        </a>
+    </center>
+  
+    {% else %}
+    <div class="login-card">
+        {% if msg %}
+        <h6 style="color:red;">{{msg}}</h6><br>
+        {% endif %}
+        
+        <form class="form-signin" method="POST">
+            <input class="form-control" type="text" name="appid" placeholder="Copy paste appid" autofocus="">
+            <br>
+            <label >Select any of this options: </label>
+            <select name="chooice" size="2" class="form-control" >
+                <option value="1">QuickAnalysis</option>
+                <option value="2">LazyAnalysis</option>
+            </select>
+            <br>
+            <button id="scrollTopButton" onclick="gfg_Run()" class="btn btn-primary btn-block btn-lg btn-signin" type="submit">Find</button></form>
+        </form>
+    </div>
+    <center>
+        <a href="{{ url_for('StarBasedAnalysisInputTaker') }}">
+            <h3 style="color: green;">Go to StarBased Analysis</h3>
+        </a>
+    </center>
+  
+    {% endif %}
+
+    <hr>
+    {% if plot %}
+    <center id="chart">
+        
+        {% if no_of_star %}
+        <h3>This are the comments that has {{no_of_star}} stars</h3><br>
+        {% else %}
+        <h3>COMMENTS: </h3><br>
+        {% endif %}
+            <img src="{{ url_for('static',filename='images/piechart.png') }}"></img>
+        <h3>APP INFORMATION: </h3>
+        {% for i in appinfo %}
+           <p>{{i}}: {{appinfo[i]}}</p>
+        {% endfor %}
+
+        <h3>App Permissions</h3>
+        {% for i,j in permission %}
+          <p>{{i}} : {{j}}</p>
+        {% endfor %}
+    </center>
+          {% else %}
+    <center id="charterror">
+        <h3 style="color: red;">{{error_msg}}</h3>
+    </center>
+        
+    {% endif %}
+
+    <script>
+        var button = document.getElementById("scrollTopButton");
+        var chart=document.getElementById("chart")
+       
+        if(chart!=null)
+        {
+            function gfg_Run() {
+            $(window).scrollTop($('#chart').position().top);}
+        }
+        else{
+            function gfg_Run() {
+            $(window).scrollTop($('#charterror').position().top);}
+       
+        }
+    </script>
+   
+    <script src="{{ url_for('static',filename='base_1/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='base_1/assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    
+</body>
+</html>
+
